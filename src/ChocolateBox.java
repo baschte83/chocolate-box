@@ -1,38 +1,65 @@
 /**
- * Organisation: Hochschule Muenchen, Fakultaet 07
- * Project: Praktikum Softwareentwicklung 1 Frau Prof. Dr. Hammerschall, WS 2016/2017
- * Author: Sebastian Baumann, bauman21@hm.edu
+ * Organisation: University of applied sciences Munich, faculty 07
+ * Project: lab to class software developement 1 Mrs. Prof. Dr. Hammerschall, WS 2016/2017
+ * Author: Sebastian Baumann, sebastian_baumann@gmx.net
  * Study group: IF3A
  * Date: 19. November 2016
- * Purpose: Loesung Praktikumseinheit 04: ChocolateBox
- * Software: Oracle Java SE JDK 1.8.0_101, Windows 10 x86_64
- * Hardware: Intel Core i5-6300 @ 2.40 GHz 2.50 GHz, 2 Cores, 4096 MB RAM
+ * Purpose: solution to lab ChocolateBox
  */
+class ChocolateBox {
 
-public class ChocolateBox {
+    /**
+     * Private constant to store the char representing a truffle chocolate.
+     */
+    private static final char TRUFFLE = 'C';
 
-    // Variablen -----------------------------------------------------
-    // Definition der geforderten Konstanten
-    private static final char TRUFFLE = 'C';    // Konstante fuer Champagner-Trueffel
-    private static final char NOUGAT = 'S';     // Konstante fuer Schichtnougat
-    private static final char BEAN = 'W';       // Konstante fuer Weinbrandbohnen
-    private static final int CAPACITY = 21;     // Konstante fuer die Hoechstfuellmenge einer Pralinenschachtel
+    /**
+     * Private constant to store the char representing a nougat chocolate.
+     */
+    private static final char NOUGAT = 'S';
 
-    // Definition der uebrigen Variablen
-    private int truffle;    // Anzahl an Champagner-Trueffel
-    private int nougat;     // Anzahl an Schichtnougat
-    private int bean;       // Anzahl an Weinbrandbohnen
+    /**
+     * Private constant to store the char representing a brandy bean chocolate.
+     */
+    private static final char BEAN = 'W';
+
+    /**
+     * Private constant to store the capacity .
+     */
+    private static final int CAPACITY = 21;
+
+    /**
+     * Private constant to store how many chocolates are in a box from the start.
+     */
+    private static final int INITIAL_VALUE = 7;
+
+    /**
+     * Private variable to store the actual amount of truffle chocolates in this chocolate box.
+     */
+    private int truffle;
+
+    /**
+     * Private variable to store the actual amount of nougat chocolates in this chocolate box.
+     */
+    private int nougat;
+
+    /**
+     * Private variable to store the actual amount of brandy bean chocolates in this chocolate box.
+     */
+    private int bean;
 
 
-    // Custom-Konstruktor ---------------------------------------------
+    /**
+     * Custom constructor of class chocolatebox.
+     * @param full - boolean value if the box is full (true) or completely empty (false).
+     */
     ChocolateBox(boolean full) {
 
-        // Es wird in jedem Fall eine leere Schachtel erzeugt, ausser wenn full mit true uebergeben wird
         if (full) {
 
-            this.truffle = 7;
-            this.nougat = 7;
-            this.bean = 7;
+            this.truffle = INITIAL_VALUE;
+            this.nougat = INITIAL_VALUE;
+            this.bean = INITIAL_VALUE;
 
         }
 
@@ -46,21 +73,17 @@ public class ChocolateBox {
 
     }
 
-    // Methoden -------------------------------------------------------
+    /**
+     * Method to add a certain type of chocolate to this chocolate box object.
+     * @param type - type of the chocolate (C for truffle, S for nougat, W for bean).
+     * @param number - amount of chocolates to add to this chocolate box object.
+     * @return - returns this chocolate box object, which has more chocoltes than before.
+     */
     ChocolateBox add(char type, int number) {
 
-        // Setzen eines Zaehlers zum hinzufuegen von Pralinen
+        // A counter which helps to add new chocolates.
         int counter = number;
 
-        /**
-         * Per while-Schleife wird nun zur entsprechenden Pralinensorte neue
-         * Pralinen hinzugezaehlt. Das ganze funktioniert nur, wenn alle Pralinen
-         * zusammen noch nicht die Hoechstmenge an Pralinen erreicht haben, wenn also
-         * noch Platz in der Schachtel ist. Per switch wird innerhalb der Schleife
-         * entschieden, zu welcher Sorte (was type vorgibt) neue Pralinen hinzugezaehlt
-         * werden sollen. Da fuer type nur die Eingabe 'C', 'S' oder 'W' zulaessig ist,
-         * muss eine gueltige Eingabe getestet werden.
-         */
 
         if ((type == 'C') || (type == 'S') || (type == 'W')) {
 
@@ -105,19 +128,17 @@ public class ChocolateBox {
 
     }
 
+    /**
+     * Method to remove an amount of chocolates of a certain type.
+     * @param type - type of the chocolates that have to be removed.
+     * @param number - amount of chocolates which have to be removed.
+     * @return - returns a chocolate box which has less chocolates in it.
+     */
     ChocolateBox remove(char type, int number) {
 
-        // Setzen eines Zaehlers zum entfernen von Pralinen
+        // A counter which helps to remove chocolates.
         int counter = number;
 
-        /**
-         * In der while-Schleife werden nun Pralinen aus der Schachtel entfernt.
-         * Es werden solange Pralinen entfernt, wie die Angabe number vorgibt und
-         * solange es noch entsprechende Pralinen in der Schachtel gibt. Welche
-         * Pralinen entfernt werden gibt type vor und wird per switch-Anweisung
-         * geprueft. Da fuer type nur die Eingabe 'C', 'S' oder 'W' zulaessig ist,
-         * muss eine gueltige Eingabe getestet werden.
-         */
         if ((type == 'C') || (type == 'S') || (type == 'W')) {
 
             while (counter > 0) {
@@ -163,15 +184,12 @@ public class ChocolateBox {
 
     }
 
+    /**
+     * Method to generate a String representation of this chocolate box object.
+     * @return - returns a String representation of this chocolate box object.
+     */
     public String toString() {
 
-        /**
-         * Mit for-Schleifen fuer jeden Pralinentyp werden Pralinen-
-         * Buchstaben zu einem neuen String "boxContent" hinzugefuegt.
-         * Am Ende wird der String "boxContent" mit String.format() so
-         * formatiert, dass der String innerhalb einer Klammer
-         * ausgegeben wird.
-         */
         String boxContent = "";
 
         for (int i = 0; i < truffle; i++) {
